@@ -11,6 +11,7 @@ def init_auth_api(app):
     auth_api = Api(app)
     
     auth_api.add_resource(Login, '/login','/')
+    auth_api.add_resource(LoginToken, '/login-token')
     auth_api.add_resource(RefreshToken, '/refresh-token')
     
 def create_app()->Flask:

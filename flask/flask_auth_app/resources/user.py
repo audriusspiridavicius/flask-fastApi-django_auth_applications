@@ -1,3 +1,13 @@
+class LoginToken(Resource):
+    
+    @basic_auth.login_required
+    def post(self):
+        
+        usr = basic_auth.current_user()
+        token = generate_token(usr)
+        
+        return token
+
 class RefreshToken(Resource):
     
     @token_auth.login_required
