@@ -1,3 +1,21 @@
+from flask_restful import Resource
+from flask_auth_app.auth import basic_auth, token_auth, generate_token
+from flask_auth_app.models.user import User
+
+
+
+
+class Users(Resource):
+    
+    @token_auth.login_required
+    def get(self):
+        return {'users get': [{'name': 'John', 'age': 30}]}
+    
+    @token_auth.login_required
+    def post(self):
+        return {'users post': [{'name': 'John', 'age': 30}]}
+    
+    
 class LoginToken(Resource):
     
     @basic_auth.login_required
