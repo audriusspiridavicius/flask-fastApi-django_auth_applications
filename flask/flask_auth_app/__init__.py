@@ -11,6 +11,7 @@ def init_auth_api(app):
     auth_api = Api(app)
     
     auth_api.add_resource(Login, '/login','/')
+    auth_api.add_resource(RefreshToken, '/refresh-token')
     
 def create_app()->Flask:
     app = Flask(__name__)
@@ -24,4 +25,4 @@ def create_app()->Flask:
     migrations = Migrate(app)
     
     return app
-from .resources import Login
+from .resources import Login, Users, LoginToken, RefreshToken
