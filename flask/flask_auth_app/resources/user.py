@@ -30,10 +30,13 @@ class RefreshToken(Resource):
     
     @token_auth.login_required
     def post(self):
-        usr_id = basic_auth.current_user()
-       
         
-        if usr_id and type(usr_id) == int:
+        try:
+            usr_id = int(basic_auth.current_user())
+        except ValueError:
+            usr_id = False
+        
+        if usr_id:
             user = User.query.filter_by(id=usr_id).first()
             if user:   
                 token = generate_token(user)
@@ -41,6 +44,6 @@ class RefreshToken(Resource):
             else:
                 return {'error': 'User not found'}, 404
         else:
-            return {'error': 'Invalid Token! or Token is Expired'}, 401
+            return {'error': f'Invalid Token! or Token is Expired {type(usr_id)}'}, 401
         
         
