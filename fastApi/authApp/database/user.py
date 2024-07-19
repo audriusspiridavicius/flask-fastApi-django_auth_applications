@@ -3,7 +3,7 @@ from sqlalchemy.orm import mapped_column, Mapped, Session
 from fastapi import Depends
 from typing import Annotated
 from sqlalchemy.ext.hybrid import hybrid_property
-
+from authApp.functions.hash import Hash
 
 class User(Base):
     __tablename__ = "users"
@@ -26,8 +26,8 @@ class User(Base):
     
     
     @classmethod
-    def verify_password(cls, actual_password, entered_password):
-        return actual_password == entered_password
+    def verify_password(cls, actual_password, entered_password) -> bool:
+        return Hash.verify(entered_password, actual_password)
     
     @hybrid_property
     def password(self):
@@ -35,7 +35,7 @@ class User(Base):
 
     @password.setter
     def password(self, password):
-        self._password = password
+        self._password = Hash.hash(password)
         
         
 def create_init_users(db:Session):

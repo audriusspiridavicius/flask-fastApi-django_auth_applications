@@ -7,9 +7,10 @@ class Hash:
         value = value.encode('utf-8') 
         hash_value = sha256_crypt.hash(value)
         
-        print(f"hash value = {hash_value}")
         return hash_value
 
+    def verify(value:str, hash:str):
+        return sha256_crypt.verify(value, hash)
     
 if __name__ == "__main__":
     print(Hash.hash("1234"))
