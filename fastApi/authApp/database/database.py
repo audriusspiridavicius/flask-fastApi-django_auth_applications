@@ -12,6 +12,7 @@ Base = declarative_base()
 
 
 def get_database():
+    from authApp.database.user import User
     Base.metadata.create_all(bind=engine)
     try:
         db = SessionLocal()
