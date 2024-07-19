@@ -37,10 +37,10 @@ class User(Base):
     def password(self, password):
         self._password = Hash.hash(password)
         
+    @classmethod
+    def create_init_users(cls, db:Session):
         
-def create_init_users(db:Session):
-    
-    usr = User(username="admin", password="admin")
-    if db.query(User).count() > 0:
-        db.add(usr)
-        db.commit()
+        usr = User(username="admin", password="admin")
+        if db.query(User).count() == 0:
+            db.add(usr)
+            db.commit()
