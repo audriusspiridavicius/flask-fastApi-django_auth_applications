@@ -38,4 +38,9 @@ class User(Base):
         self._password = password
         
         
+def create_init_users(db:Session):
     
+    usr = User(username="admin", password="admin")
+    if db.query(User).count() > 0:
+        db.add(usr)
+        db.commit()

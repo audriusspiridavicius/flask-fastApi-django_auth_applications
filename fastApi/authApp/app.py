@@ -3,8 +3,6 @@ from fastapi.security import HTTPBasic
 from .database import database, user
 
 
-database.Base.metadata.create_all(bind=database.engine)
-
 app = FastAPI()
 
 auth = HTTPBasic()
