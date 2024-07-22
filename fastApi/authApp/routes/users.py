@@ -10,7 +10,9 @@ from authApp import pydantic
 
 router = APIRouter()
 
-@router.get("/users", response_model=pydantic.User)
+
+
+@router.post("/users", response_model=pydantic.User)
 def user(user:Annotated[User, Depends(login_user)]):
     
-    return {user}
+    return user
