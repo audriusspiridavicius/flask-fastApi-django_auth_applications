@@ -1,4 +1,4 @@
-# Project Title
+# fastApi application
 
 Simple fastApi application.
 basic authorization implemented
