@@ -1,8 +1,11 @@
 # Flask application
 
-Simple Flask application.
+Simple Flask application
+
 Basic Authentication implemented
+
 jwt token Authentication implemented
+
 oauth Authentication
 
 ## Description
